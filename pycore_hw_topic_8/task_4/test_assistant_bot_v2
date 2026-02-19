@@ -1,0 +1,76 @@
+import os
+from colorama import Fore, init
+
+from assistant_bot_v2 import (
+    parse_input,
+    add_contact,
+    change_contact,
+    show_phone,
+    show_all,
+)
+
+init(autoreset=True)
+
+
+def run_tests():
+    contacts = {}
+
+    # --- parse_input ---
+    cmd, args = parse_input("add John 123")
+    assert cmd == "add"
+    assert args == ["John", "123"]
+
+    try:
+        parse_input("   ")
+        assert False
+    except ValueError:
+        pass
+
+    # --- add_contact ---
+    result = add_contact(["John", "123"], contacts)
+    assert "Contact added" in result
+    assert contacts["John"] == "123"
+
+    result = add_contact(["Kate", "555"], contacts)
+    assert contacts["Kate"] == "555"
+
+    # invalid args
+    result = add_contact(["OnlyName"], contacts)
+    assert "Invalid arguments" in result
+
+    # --- change_contact ---
+    result = change_contact(["John", "999"], contacts)
+    assert "Contact updated" in result
+    assert contacts["John"] == "999"
+
+    # change missing contact
+    result = change_contact(["Mike", "111"], contacts)
+    assert "Contact not found" in result
+
+    # invalid args
+    result = change_contact(["OnlyName"], contacts)
+    assert "Invalid arguments" in result
+
+    # --- show_phone ---
+    result = show_phone(["John"], contacts)
+    assert "999" in result
+
+    result = show_phone(["Unknown"], contacts)
+    assert "Contact not found" in result
+
+    result = show_phone([], contacts)
+    assert "Invalid arguments" in result or "Not enough arguments" in result
+
+    # --- show_all ---
+    result = show_all(contacts)
+    assert "John" in result
+    assert "Kate" in result
+
+    empty_result = show_all({})
+    assert "No contacts saved" in empty_result
+
+    print(f"{Fore.GREEN}All bot tests passed successfully!")
+
+
+if __name__ == "__main__":
+    run_tests()

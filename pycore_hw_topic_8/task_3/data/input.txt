@@ -1,0 +1,5 @@
+2024-01-01 10:00:00 INFO System started
+2024-01-01 10:01:00 DEBUG Debugging mode on
+2024-01-01 10:02:00 WARNING Low memory
+2024-01-01 10:03:00 ERROR Crash happened
+2024-01-01 10:04:00 INFO User logged in
