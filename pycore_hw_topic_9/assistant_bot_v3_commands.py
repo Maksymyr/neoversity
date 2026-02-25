@@ -53,7 +53,7 @@ def find_phone_owner(args, book: AddressBook):
     phone_to_find = args[0]
     for record in book.data.values():
         if record.find_phone(phone_to_find):
-            return f"{Fore.BLUE}Phone {phone_to_find} belongs to {record.name.value}."
+            return f"{Fore.BLUE}Phone {phone_to_find} belongs to {record.name}."
     return f"{Fore.RED}Phone {phone_to_find} not found."
 
 def show_all(book: AddressBook):

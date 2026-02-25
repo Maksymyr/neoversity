@@ -98,12 +98,12 @@ def run_tests():
     assert john.find_phone("5555555555") is None
 
     result = delete_phone(["John", "0000000000"], book)
-    assert "removed" in result or "Invalid arguments" in result  # удаление несуществующего телефона
+    assert "removed" in result or "Invalid arguments" in result
 
     # --- find_phone_owner ---
     add_contact(["Alice", "9998887777"], book)
     result = find_phone_owner(["9998887777"], book)
-    assert "Alice" in result
+    assert "Phone 9998887777 belongs to Alice" in result
 
     result = find_phone_owner(["0000000000"], book)
     assert "not found" in result

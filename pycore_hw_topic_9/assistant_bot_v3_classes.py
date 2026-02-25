@@ -1,6 +1,9 @@
 from collections import UserDict
 
 class Field:
+    def __str__(self):
+        return self.value
+
     def __init__(self, value):
         self.value = value
 
@@ -39,8 +42,8 @@ class Record:
         return None
 
     def __str__(self):
-        phones_str = "; ".join(p.value for p in self.phones)
-        return f"{self.name.value}: {phones_str}"
+        phones_str = "; ".join(str(p) for p in self.phones)
+        return f"{self.name}: {phones_str}" 
 
 class AddressBook(UserDict):
     def add_record(self, record):
