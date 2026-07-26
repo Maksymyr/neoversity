@@ -207,12 +207,6 @@ Workbench. Скрипт створює схему `hw02_orders` і чотири 
 | `orders`      | `order_id` | `customer_id` → `customers` |
 | `order_items` | `(order_id, product_id)` | `order_id` → `orders`, `product_id` → `products` |
 
-### Як відтворити
-
-1. MySQL Workbench → **File → Open SQL Script…** → `sql/p5_create_tables.sql`
-2. Виконати весь скрипт кнопкою ⚡ (*Execute All or Selection*)
-3. У панелі **SCHEMAS** натиснути ⟳ (Refresh) — з'явиться схема `hw02_orders`
-
 ---
 
 ## Відповідність критеріям прийняття
