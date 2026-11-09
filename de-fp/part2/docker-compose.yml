@@ -1,0 +1,18 @@
+services:
+  airflow:
+    build: .
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      _AIRFLOW_DB_MIGRATE: "true"
+      _AIRFLOW_WWW_USER_CREATE: "true"
+      _AIRFLOW_WWW_USER_USERNAME: admin
+      _AIRFLOW_WWW_USER_PASSWORD: admin
+    # підключення spark-default, Spark у режимі local
+    command: >
+      bash -c "airflow db migrate
+      && (airflow connections add spark-default --conn-type spark --conn-host 'local[1]' || true)
+      && exec airflow standalone"
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/opt/airflow/dags

@@ -1,0 +1,10 @@
+configs.py
+__pycache__/
+.venv/
+checkpoints/
+*.zip
+part2/landing/
+part2/bronze/
+part2/silver/
+part2/gold/
+.DS_Store
